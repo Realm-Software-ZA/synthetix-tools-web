@@ -1,10 +1,66 @@
 /* purgecss start ignore */
 @tailwind base;
 @tailwind components;
-article a {
-    color: rgb(49, 49, 182);
-    text-decoration: underline;
+
+@font-face {
+    font-family: 'GT America';
+    src: local('GT America'), url('../public/fonts/GT-America-Condensed-Bold.woff2') format('woff');
 }
+
+.App {
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    font-size: 12px;
+}
+
+.gt-america {
+    font-family: 'GT America', sans-serif;
+}
+
+.explore-our-tools {
+    letter-spacing: 3px;
+}
+
+.intro {
+    font-family: 'GT America', sans-serif;
+    letter-spacing: 1px;
+}
+
+.button {
+    font-family: 'GT America', sans-serif;
+    letter-spacing: 1px;
+    font-weight: bold;
+    font-size: 14px;
+    margin-right: 15px;
+}
+
+.button-inner {
+    transition: all 200ms ease-in-out;
+}
+
+.parallax-effect {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
+}
+
+.inner-element {
+    transform: translateZ(20px);
+    position: absolute;
+}
+
 /* purgecss end ignore */
 @tailwind utilities;
 
