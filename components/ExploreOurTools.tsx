@@ -2,11 +2,11 @@ import React from "react";
 
 const ExploreOurTools = () => {
   return (
-    <div>
-      <div className="text-primary text-3xl font-bold text-center explore-our-tools mb-4 md:text-left">
+    <div className="mt-20 mb-20 sm:px-32 md:px-0">
+      <div className="text-primary sm:text-2xl md:text-3xl font-bold text-center explore-our-tools mb-4">
         EXPLORE OUR TOOLS
       </div>
-      <div className="text-white heading text-base text-center text-2xl uppercase leading-9 intro md:text-left md:pr-20">
+      <div className="text-white heading text-base text-center text-lg md:text-2xl uppercase leading-6 md:leading-9 intro max-w-xl mx-auto">
         A collection of DAPPS and resources that are useful to the larger
         Synthetix community in the
         <span className="text-primary">&nbsp;#DEFI</span> &

@@ -1,4 +1,11 @@
 import React, { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useLocation,
+} from "react-router-dom";
 
 import { getAllPostsForHome, getAllCategories } from "../lib/api";
 import Head from "next/head";
@@ -7,6 +14,7 @@ import dynamic from "next/dynamic";
 
 import SynthetixFooter from "../components/SynthetixFooter";
 import Body from "../components/Body/Body";
+import { CategoryEntity } from "../components/CategorySelector/ICategorySelector";
 
 const StarfieldAnimation = dynamic(() => import("react-starfield-animation"), {
   ssr: false,
@@ -22,7 +30,8 @@ const Starfield = React.memo(() => {
 
   return typeof window !== "undefined" ? (
     <StarfieldAnimation
-      numParticles={100}
+      // @ts-ignore
+      numParticles={200}
       style={{
         position: "absolute",
         zIndex: 0,
@@ -38,10 +47,8 @@ const Starfield = React.memo(() => {
 });
 
 export default function Index({ allPosts, categories }) {
-  const [activeSection, setActiveSection] = useState<string>("All");
-
-  return (
-    <>
+  return typeof window !== "undefined" ? (
+    <Router>
       <Head>
         <title>Synthetix Tools</title>
       </Head>
@@ -49,8 +56,6 @@ export default function Index({ allPosts, categories }) {
         <div className="absolute w-[100%] h-[100%]">
           <Image
             src={"/img/background.jpg"}
-            width="100%"
-            height="100%"
             layout="fill"
             objectFit="cover"
             quality={100}
@@ -58,29 +63,19 @@ export default function Index({ allPosts, categories }) {
         </div>
 
         <Starfield />
-        <Body
-          tools={allPosts}
-          activeSection={activeSection}
-          setActiveSection={setActiveSection}
-          categories={categories}
-        />
-
+        <Body tools={allPosts} categories={categories} />
         <SynthetixFooter />
       </div>
-    </>
-  );
+    </Router>
+  ) : null;
 }
 
-export async function getStaticProps({ preview = false }) {
-  const allPosts = await getAllPostsForHome(preview);
-  const allCategories = await getAllCategories();
-
-  const categories = allCategories.map((category) => category.title);
-
-  console.log({ allPosts, categories });
+export async function getStaticProps() {
+  const allPosts = await getAllPostsForHome();
+  const categories = await getAllCategories();
 
   return {
-    props: { allPosts, categories, preview },
+    props: { allPosts, categories },
     revalidate: 1,
   };
 }

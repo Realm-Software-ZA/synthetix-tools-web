@@ -1,4 +1,4 @@
-export interface ToolProps {
+export interface ToolEntity {
   _id: string;
   body: [
     {
@@ -23,6 +23,7 @@ export interface ToolProps {
       _type: string;
     }
   ];
+  parent: { _ref: string };
   emblemImage: string;
   gridImage: string;
   title: string;

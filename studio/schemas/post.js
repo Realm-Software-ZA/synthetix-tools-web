@@ -43,6 +43,12 @@ export default {
       title: "Body",
       type: "blockContent",
     },
+    {
+      title: "Parent",
+      name: "parent",
+      type: "reference",
+      to: [{ type: "post" }],
+    },
   ],
 
   preview: {

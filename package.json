@@ -27,6 +27,7 @@
     "react-hook-form": "^7.25.3",
     "react-parallax-tilt": "^1.5.90",
     "react-portable-text": "^0.4.3",
+    "react-router-dom": "^6.2.1",
     "react-starfield-animation": "^1.0.1",
     "swr": "^1.2.0"
   },
