@@ -11,9 +11,10 @@ from [manage.sanity.io](https://manage.sanity.io).
 
 Once those env variables are ready, you can run the following commands to get Next's development server up and running:
 
-```bash
+```bash``
 npm install
 
+``````
 # Run the frontend
 npm run dev
 
