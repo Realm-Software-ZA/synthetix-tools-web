@@ -1,16 +1,15 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
 import { BodyProps } from "./IBody";
+import { useIsMobile } from "../../hooks/useIsMobile";
+import { CategoryEntity } from "../CategorySelector/ICategorySelector";
 
 import ExploreOurTools from "../ExploreOurTools";
 import CategorySelector from "../CategorySelector/CategorySelector";
 import Tool from "../Tool/Tool";
-import { useIsMobile } from "../../hooks/useIsMobile";
-import { CategoryEntity } from "../CategorySelector/ICategorySelector";
-import { useLocation, useNavigate } from "react-router-dom";
-import { capitalize } from "../../helpers";
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -47,6 +46,8 @@ const Body: FunctionComponent<BodyProps> = ({ tools, categories }) => {
   const backToRoot = () => {
     setActiveSection({ title: "All" });
   };
+
+  const selectedPack = tools.find((tool) => tool._id === packId);
 
   return (
     <div className="container mx-auto md:px-40 mt-32 relative z-10">
@@ -95,6 +96,15 @@ const Body: FunctionComponent<BodyProps> = ({ tools, categories }) => {
           </div>
         </div>
       </div>
+
+      {selectedPack ? (
+        <>
+          <div className="text-white font-bold gt-america text-3xl mb-3 mt-20">
+            {selectedPack?.title}
+          </div>
+          <hr className="w-56 mx-auto text-white" />
+        </>
+      ) : null}
 
       <div className="grid md:grid-cols-3 sm:grid-cols-1 md:gap-x-10 lg:gap-x-20 mt-20 tools-section">
         {tools.map((tool) => {
