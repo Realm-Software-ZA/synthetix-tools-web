@@ -1,9 +1,10 @@
 import { Dispatch, SetStateAction } from "react";
-import { SectionType } from "../Section/ISection";
-import { ItemEntity } from "../../models/Item";
+
+import { Tool } from "../../models/Tool";
 
 export interface BodyProps {
-  items: ItemEntity[];
-  activeSection: SectionType;
-  setActiveSection: Dispatch<SetStateAction<SectionType>>;
+  tools: Tool[];
+  categories: string[];
+  activeSection: string;
+  setActiveSection: Dispatch<SetStateAction<string>>;
 }

@@ -21,7 +21,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .gt-america {
@@ -29,7 +29,7 @@ body {
 }
 
 .explore-our-tools {
-    letter-spacing: 3px;
+    letter-spacing: 6px;
 }
 
 .intro {
@@ -59,6 +59,10 @@ body {
 .inner-element {
     transform: translateZ(20px);
     position: absolute;
+}
+
+.footer-bg {
+    background-image: url('/img/footer-bg.png');
 }
 
 /* purgecss end ignore */

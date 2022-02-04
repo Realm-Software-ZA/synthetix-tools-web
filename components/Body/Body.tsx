@@ -6,7 +6,8 @@ import { BodyProps } from "./IBody";
 
 import ExploreOurTools from "../ExploreOurTools";
 import SectionToggle from "../SectionToggle";
-import Item from "../Item/Item";
+import Tool from "../Tool/Tool";
+import { useIsMobile } from "../../hooks/useIsMobile";
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -20,18 +21,30 @@ const itemVariants = {
 const Body: FunctionComponent<BodyProps> = ({
   activeSection,
   setActiveSection,
-  items,
+  tools,
+  categories,
 }) => {
+  const isMobile = useIsMobile();
+
   return (
-    <div className="container mx-auto mt-20 lg:px-40 md:px-20 sm:px-0 relative">
+    <div className="container mx-auto mt-40 lg:px-40 md:px-20 sm:px-0 relative z-10">
       <div className="flex flex-col-reverse md:flex-row">
         <div className="flex-1">
           <ExploreOurTools />
           <div className="flex mt-10">
-            <SectionToggle
-              activeSection={activeSection}
-              setActiveSection={setActiveSection}
-            />
+            {isMobile ? (
+              <select className="button-inner p-3 w-full h-full flex items-center justify-center rounded-sm">
+                {categories.map((category) => (
+                  <option>{category}</option>
+                ))}
+              </select>
+            ) : (
+              <SectionToggle
+                activeSection={activeSection}
+                setActiveSection={setActiveSection}
+                categories={categories}
+              />
+            )}
           </div>
         </div>
         <div className="flex-none mr-5 mt-3.5">
@@ -44,10 +57,12 @@ const Body: FunctionComponent<BodyProps> = ({
         </div>
       </div>
 
-      <div className="grid md:grid-cols-3 sm:grid-cols-1 gap-x-20 mt-20">
-        {items.map((item) => {
-          const visible =
-            item.sections.includes(activeSection) || activeSection === "All";
+      <div className="grid md:grid-cols-3 sm:grid-cols-1 md:gap-x-10 lg:gap-x-20 mt-20 ">
+        {tools.map((item) => {
+          // const visible =
+          //   item.sections.includes(activeSection) || activeSection === "All";
+
+          const visible = true;
           return visible ? (
             <motion.div
               variants={itemVariants}
@@ -55,7 +70,7 @@ const Body: FunctionComponent<BodyProps> = ({
               initial="hidden"
               animate="show"
             >
-              <Item {...item} />
+              <Tool {...item} />
             </motion.div>
           ) : null;
         })}

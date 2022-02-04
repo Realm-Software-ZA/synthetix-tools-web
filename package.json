@@ -20,11 +20,13 @@
     "framer-motion": "^6.2.3",
     "next": "^12.0.9",
     "next-sanity": "^0.4.0",
+    "next-sanity-image": "^3.2.1",
     "prettier": "^2.5.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.25.3",
     "react-parallax-tilt": "^1.5.90",
+    "react-portable-text": "^0.4.3",
     "react-starfield-animation": "^1.0.1",
     "swr": "^1.2.0"
   },
