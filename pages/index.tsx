@@ -1,11 +1,5 @@
-import React, { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useLocation,
-} from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import { getAllPostsForHome, getAllCategories } from "../lib/api";
 import Head from "next/head";
@@ -14,7 +8,6 @@ import dynamic from "next/dynamic";
 
 import SynthetixFooter from "../components/SynthetixFooter";
 import Body from "../components/Body/Body";
-import { CategoryEntity } from "../components/CategorySelector/ICategorySelector";
 
 const StarfieldAnimation = dynamic(() => import("react-starfield-animation"), {
   ssr: false,
