@@ -19,7 +19,7 @@ const Tool: FunctionComponent<ToolEntity> = ({
     <div className="mb-24 px-10 md:px-0">
       <div className="relative flex items-center justify-center mb-5">
         <Tilt className="parallax-effect" perspective={1000}>
-          <div className="inner-element flex-wrap w-[40%]">
+          <div className="inner-element flex-wrap w-[60%]">
             <Image src={emblemImage} width={300} height={300} alt="grid" />
           </div>
           <Image src={gridImage} width={400} height={400} alt="grid" />
