@@ -46,7 +46,7 @@ export default function Index({ allPosts, categories }) {
         <title>Synthetix Tools</title>
       </Head>
       <div className="App">
-        <div className="absolute w-[100%] h-[100%]">
+        <div className="absolute w-full h-full">
           <Image
             src={"/img/background.jpg"}
             layout="fill"
