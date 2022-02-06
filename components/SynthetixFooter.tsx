@@ -20,7 +20,7 @@ const SynthetixFooter = () => {
         </div>
       </div>
 
-      <div className="m-auto max-w-[200px]  md:max-w-[500px] mb-96 z-20">
+      <div className="m-auto max-w-[280px]  md:max-w-[500px] mb-48  md:mb-96 z-20">
         <Image
           src="/img/synthetix-gdao-logo.png"
           alt="Synthetix DAO"
@@ -31,15 +31,7 @@ const SynthetixFooter = () => {
 
       <div className="absolute bottom-0 w-full h-full pointer-events-none z-0 footer-bg" />
 
-      <div className="absolute bottom-0 w-full h-full pointer-events-none z-1">
-        <Image
-          src="/img/mountains.png"
-          layout="fill"
-          objectFit="fill"
-          quality={100}
-          alt="footer mountains"
-        />
-      </div>
+      <div className="absolute bottom-0 w-full h-full pointer-events-none z-1 mountains" />
 
       <div className="text-white max-w-xl z-20 mb-28 px-10 md:px-0">
         Synthetix is a derivatives liquidity protocol providing the backbone for

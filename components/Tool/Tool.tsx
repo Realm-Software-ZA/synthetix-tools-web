@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Tilt from "react-parallax-tilt";
 import Image from "next/image";
 import { blockContentToPlainText } from "react-portable-text";
@@ -15,9 +15,17 @@ const Tool: FunctionComponent<ToolEntity> = ({
   body,
   link,
 }) => {
+  const href = `/packs/${_id}`;
+  const navigate = useNavigate();
+
   return (
     <div className="mb-24 px-10 md:px-0">
-      <div className="relative flex items-center justify-center mb-5">
+      <div
+        className="relative flex items-center justify-center mb-5 cursor-pointer"
+        onClick={() =>
+          link ? window.open(link, "_blank").focus() : navigate(href)
+        }
+      >
         <Tilt className="parallax-effect" perspective={1000}>
           <div className="inner-element flex-wrap w-[60%]">
             <Image src={emblemImage} width={300} height={300} alt="grid" />
@@ -46,7 +54,7 @@ const Tool: FunctionComponent<ToolEntity> = ({
         ) : (
           <Link
             className="text-primary font-bold gt-america font-bold text-[18px] text-left block"
-            to={`/packs/${_id}`}
+            to={href}
           >
             Link to {title}
           </Link>

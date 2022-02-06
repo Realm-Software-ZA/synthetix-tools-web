@@ -67,7 +67,7 @@ const Body: FunctionComponent<BodyProps> = ({ tools, categories }) => {
             {isMobile ? (
               <select
                 value={activeSection._id}
-                className="button-inner p-3 w-full h-full flex items-center justify-center rounded-sm bg-black text-primary mx-10"
+                className="button-inner p-3 w-full h-full flex items-center justify-center rounded bg-black text-primary mx-10 h-12 border-primary border-solid border-2"
                 onChange={(e) => {
                   const selected = allCategories.find(
                     (category) => category._id === e.target.value
