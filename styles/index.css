@@ -72,7 +72,5 @@ body {
     background-repeat: no-repeat;
 }
 
-
-/* purgecss end ignore */
 @tailwind utilities;
-
+/* purgecss end ignore */
