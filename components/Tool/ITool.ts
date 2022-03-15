@@ -24,8 +24,8 @@ export interface ToolEntity {
     }
   ];
   parent: { _ref: string };
-  emblemImage: string;
-  gridImage: string;
+  emblemImage?: string;
+  gridImage?: string;
   title: string;
   link: string;
 }

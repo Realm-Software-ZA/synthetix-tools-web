@@ -47,22 +47,27 @@ const Body: FunctionComponent<BodyProps> = ({ tools, categories }) => {
     setActiveSection({ title: "All" });
   };
 
-  const selectedPack = tools.find((tool) => tool._id === packId);
+  const selectedPack =
+    tools && tools.length > 0
+      ? tools.find((tool) => tool._id === packId)
+      : null;
 
   return (
-    <div className="container mx-auto md:px-40 mt-32 relative z-10">
-      <Image
-        src={"/img/synthetix-tools-logo-triangle@2x.png"}
-        alt="logo"
-        height={isMobile ? 200 : 300}
-        width={isMobile ? 200 : 300}
-        onClick={backToRoot}
-        className="cursor-pointer"
-      />
+    <div className="container mx-auto md:px-20 mt-32 relative z-10 mt-0 pt-32">
+      <div className="flex align-middle justify-center">
+        <Image
+          src={"/img/synthetix-tools-logo-triangle@2x.png"}
+          alt="logo"
+          height={isMobile ? 200 : 300}
+          width={isMobile ? 200 : 300}
+          onClick={backToRoot}
+          className="cursor-pointer"
+        />
+      </div>
 
+      <ExploreOurTools />
       <div className="flex ">
         <div className="flex-1">
-          <ExploreOurTools />
           <div className="flex mt-10">
             {isMobile ? (
               <select

@@ -10,8 +10,8 @@ import { truncate } from "../../helpers";
 const Tool: FunctionComponent<ToolEntity> = ({
   _id,
   title,
-  emblemImage = "",
-  gridImage = "",
+  emblemImage,
+  gridImage,
   body,
   link,
 }) => {
@@ -28,9 +28,13 @@ const Tool: FunctionComponent<ToolEntity> = ({
       >
         <Tilt className="parallax-effect" perspective={1000}>
           <div className="inner-element flex-wrap w-[60%]">
-            <Image src={emblemImage} width={300} height={300} alt="grid" />
+            {emblemImage ? (
+              <Image src={emblemImage} width={300} height={300} alt="grid" />
+            ) : null}
           </div>
-          <Image src={gridImage} width={400} height={400} alt="grid" />
+          {gridImage ? (
+            <Image src={gridImage} width={400} height={400} alt="grid" />
+          ) : null}
         </Tilt>
       </div>
 
@@ -38,8 +42,8 @@ const Tool: FunctionComponent<ToolEntity> = ({
         <div className="text-white font-bold gt-america text-2xl text-left mb-3">
           {title}
         </div>
-        <div className="text-white text-left text mb-2 ellip">
-          {truncate(blockContentToPlainText(body))}
+        <div className="text-white text-left text mb-2">
+          {body ? truncate(blockContentToPlainText(body)) : null}
         </div>
 
         {link ? (

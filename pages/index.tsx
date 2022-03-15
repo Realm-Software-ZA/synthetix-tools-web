@@ -8,36 +8,7 @@ import dynamic from "next/dynamic";
 
 import SynthetixFooter from "../components/SynthetixFooter";
 import Body from "../components/Body/Body";
-
-const StarfieldAnimation = dynamic(() => import("react-starfield-animation"), {
-  ssr: false,
-});
-
-const Starfield = React.memo(() => {
-  let width = 400;
-  let height = 400;
-  if (typeof window !== "undefined") {
-    width = window?.innerWidth;
-    height = window?.innerHeight;
-  }
-
-  return typeof window !== "undefined" ? (
-    <StarfieldAnimation
-      // @ts-ignore
-      numParticles={200}
-      style={{
-        position: "absolute",
-        zIndex: 0,
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        width: width,
-        height: height,
-      }}
-    />
-  ) : null;
-});
+import StarField from "../components/StarField";
 
 export default function Index({ allPosts, categories }) {
   return typeof window !== "undefined" ? (
@@ -45,8 +16,8 @@ export default function Index({ allPosts, categories }) {
       <Head>
         <title>Synthetix Tools</title>
       </Head>
-      <div className="App">
-        <div className="absolute w-full h-full">
+      <div>
+        <div className="fixed w-full h-full">
           <Image
             src={"/img/background.jpg"}
             layout="fill"
@@ -54,8 +25,7 @@ export default function Index({ allPosts, categories }) {
             quality={100}
           />
         </div>
-
-        <Starfield />
+        <StarField />
         <Body tools={allPosts} categories={categories} />
         <SynthetixFooter />
       </div>
@@ -68,7 +38,9 @@ export async function getStaticProps() {
   const categories = await getAllCategories();
 
   return {
-    props: { allPosts, categories },
-    revalidate: 1,
+    props: {
+      allPosts,
+      categories,
+    },
   };
 }
