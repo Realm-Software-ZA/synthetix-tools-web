@@ -1,6 +1,5 @@
-import { Dispatch, SetStateAction } from "react";
-import { CategoryEntity } from "../CategorySelector/ICategorySelector";
-import { ToolEntity } from "../Tool/ITool";
+import { CategoryEntity } from "../../types/CategoryEntity";
+import { ToolEntity } from "../../types/ToolEntity";
 
 export interface BodyProps {
   tools: ToolEntity[];

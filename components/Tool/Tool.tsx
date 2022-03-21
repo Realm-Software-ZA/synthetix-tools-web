@@ -4,8 +4,8 @@ import Tilt from "react-parallax-tilt";
 import Image from "next/image";
 import { blockContentToPlainText } from "react-portable-text";
 
-import { ToolEntity } from "./ITool";
 import { truncate } from "../../helpers";
+import { ToolEntity } from "../../types/ToolEntity";
 
 const Tool: FunctionComponent<ToolEntity> = ({
   _id,

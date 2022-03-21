@@ -1,24 +1,14 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
 import Image from "next/image";
 
 import { BodyProps } from "./IBody";
 import { useIsMobile } from "../../hooks/useIsMobile";
-import { CategoryEntity } from "../CategorySelector/ICategorySelector";
+import { CategoryEntity } from "../../types/CategoryEntity";
 
 import ExploreOurTools from "../ExploreOurTools";
-import CategorySelector from "../CategorySelector/CategorySelector";
-import Tool from "../Tool/Tool";
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.3 },
-  },
-};
+import Filters from "../Filters/Filters";
+import ToolsGrid from "../ToolsGrid/ToolsGrid";
 
 const Body: FunctionComponent<BodyProps> = ({ tools, categories }) => {
   const location = useLocation();
@@ -53,7 +43,7 @@ const Body: FunctionComponent<BodyProps> = ({ tools, categories }) => {
       : null;
 
   return (
-    <div className="container mx-auto md:px-20 mt-32 relative z-10 mt-0 pt-32">
+    <div className="container mx-auto lg:px-20 mt-32 relative z-10 mt-0 pt-32">
       <div className="flex align-middle justify-center">
         <Image
           src={"/img/synthetix-tools-logo-triangle@2x.png"}
@@ -66,39 +56,37 @@ const Body: FunctionComponent<BodyProps> = ({ tools, categories }) => {
       </div>
 
       <ExploreOurTools />
-      <div className="flex ">
-        <div className="flex-1">
-          <div className="flex mt-10">
-            {isMobile ? (
-              <select
-                value={activeSection._id}
-                className="button-inner p-3 w-full h-full flex items-center justify-center rounded bg-black text-primary mx-10 h-12 border-primary border-solid border-2"
-                onChange={(e) => {
-                  const selected = allCategories.find(
-                    (category) => category._id === e.target.value
-                  );
+      <div className="flex">
+        <div className="flex mt-10 w-full">
+          {isMobile ? (
+            <select
+              value={activeSection._id}
+              className="button-inner p-3 w-full h-full flex items-center justify-center rounded bg-black text-primary mx-10 h-12 border-primary border-solid border-2"
+              onChange={(e) => {
+                const selected = allCategories.find(
+                  (category) => category._id === e.target.value
+                );
 
-                  if (selected) {
-                    setActiveSection(selected);
-                    navigate(`/${selected.title.toLowerCase()}`);
-                  } else {
-                    setActiveSection({ title: "All" });
-                    navigate(`/all`);
-                  }
-                }}
-              >
-                {allCategories.map((category) => (
-                  <option value={category._id}>{category.title}</option>
-                ))}
-              </select>
-            ) : (
-              <CategorySelector
-                activeSection={activeSection}
-                setActiveSection={setActiveSection}
-                categories={allCategories}
-              />
-            )}
-          </div>
+                if (selected) {
+                  setActiveSection(selected);
+                  navigate(`/${selected.title.toLowerCase()}`);
+                } else {
+                  setActiveSection({ title: "All" });
+                  navigate(`/all`);
+                }
+              }}
+            >
+              {allCategories.map((category) => (
+                <option value={category._id}>{category.title}</option>
+              ))}
+            </select>
+          ) : (
+            <Filters
+              activeSection={activeSection}
+              setActiveSection={setActiveSection}
+              categories={allCategories}
+            />
+          )}
         </div>
       </div>
 
@@ -111,36 +99,7 @@ const Body: FunctionComponent<BodyProps> = ({ tools, categories }) => {
         </>
       ) : null}
 
-      <div className="grid md:grid-cols-3 sm:grid-cols-1 md:gap-x-10 lg:gap-x-20 mt-20 tools-section">
-        {tools.map((tool) => {
-          const toolCategoryIds = tool.categories.map(
-            (category) => category._ref
-          );
-
-          const toolParentId = tool?.parent?._ref;
-          const toolId = tool._id;
-
-          const showAllSections = activeSection.title === "All";
-
-          const isWithinPack = toolParentId && toolParentId === packId;
-          const isToolWithinCategory =
-            toolCategoryIds.includes(activeSection._id) && toolId !== packId;
-
-          const showTool =
-            isWithinPack || isToolWithinCategory || showAllSections;
-
-          return showTool ? (
-            <motion.div
-              variants={itemVariants}
-              key={tool.title}
-              initial="hidden"
-              animate="show"
-            >
-              <Tool {...tool} />
-            </motion.div>
-          ) : null;
-        })}
-      </div>
+      <ToolsGrid tools={tools} activeSection={activeSection} packId={packId} />
     </div>
   );
 };
