@@ -48,8 +48,8 @@ const Body: FunctionComponent<BodyProps> = ({ tools, categories }) => {
         <Image
           src={"/img/synthetix-tools-logo-triangle@2x.png"}
           alt="logo"
-          height={isMobile ? 200 : 300}
-          width={isMobile ? 200 : 300}
+          height={isMobile ? 180 : 250}
+          width={isMobile ? 180 : 250}
           onClick={backToRoot}
           className="cursor-pointer"
         />
